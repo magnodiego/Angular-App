@@ -1,8 +1,2 @@
 # Angular-app
-Login/register 
-
-# Front-end
-The front-end was created using angular
-
-# Back-end
-The back-end was created using nodeJS, Express and MongoDB
+Login/register using Angular
