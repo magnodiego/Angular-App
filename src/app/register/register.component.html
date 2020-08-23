@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>    
+
+<div class="container-lg w-100 p-5" >
+    <div class="alert alert-success" *ngIf='success'>
+        {{success}}
+    </div>
+    <div class="alert alert-danger" *ngIf='error'>
+        {{error}}
+    </div>
+    <div class="shadow p-3 mb-5 bg-white rounded">
+        <p class="title">Registro de usuario</p>
+        <form [formGroup]='registerForm' (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">Ingrese su nombre</label>
+                <input type="text" class="form-control" formControlName='name' id="name" [ngClass]="{ 'is-invalid': registerForm.controls.name.touched && name.errors }">
+                    <div *ngIf="registerForm.controls.name.touched && name.errors" class="invalid-feedback">
+                        <div>Ingrese un nombre válido</div>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="surname">Ingrese su apellido</label>
+                <input type="text" class="form-control" formControlName='surname' id="surname" [ngClass]="{ 'is-invalid': registerForm.controls.surname.touched && surname.errors }">
+                    <div *ngIf="registerForm.controls.surname.touched && surname.errors" class="invalid-feedback">
+                        <div>Ingrese un apellido válido</div>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="username">Ingrese su usuario</label>
+                <input type="text" class="form-control form-control-user" formControlName='username' id="username" [ngClass]="{ 'is-invalid': registerForm.controls.username.touched && username.errors }">
+                    <div *ngIf="registerForm.controls.username.touched && username.errors" class="invalid-feedback">
+                        <div>Ingrese un usuario válido de 4 a 25 caracteres</div>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Ingrese su clave</label>
+                <input type="password" class="form-control" formControlName='password' id="password" [ngClass]="{ 'is-invalid': registerForm.controls.password.touched && password.errors}">
+                    <div *ngIf="registerForm.controls.password.touched && password.errors" class="invalid-feedback">
+                        <div>Ingrese una clave válida de 4 a 10 caracteres</div>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="passwordRepeat">Repita su clave</label>
+                <input type="password" class="form-control" formControlName='passwordRepeat' id="passwordRepeat" [ngClass]="{ 'is-invalid': registerForm.controls.passwordRepeat.touched && (passwordRepeat.errors || registerForm.controls.passwordRepeat.value !== registerForm.controls.password.value) }">
+                    <div *ngIf="registerForm.controls.passwordRepeat.touched && passwordRepeat.errors"  class="invalid-feedback">
+                        <div>Confirme su clave</div>
+                    </div>
+                    <div *ngIf="registerForm.controls.passwordRepeat.value !== registerForm.controls.password.value && registerForm.controls.passwordRepeat.touched " class="invalid-feedback">
+                        <div>Las claves no coinciden</div>
+                    </div>
+            </div>
+            <div class="row buttons">
+                <div class="col col-lg-2">  
+                    <button type="submit" class="btn btn-success" [disabled]="!registerForm.valid">
+                        <span *ngIf= "loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Registrarse!
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
