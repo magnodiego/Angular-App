@@ -1,0 +1,35 @@
+<div class="alert " [ngClass]="statusMsj ? 'alert-success' : 'd-none'">
+    {{mensaje}}
+</div>
+<div class="alert" [ngClass]="statusError ? 'alert-warning' : 'd-none'">
+    {{error}}
+</div>
+
+<div class="text-center">
+    <h1 class="h4 text-gray-900 mb-4">Datos de Perfil</h1>
+</div>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+        <label for="username" class="col-4 col-form-label">Nombre de usuario</label> 
+        <div class="col-8">
+            <input id="username" formControlName="username" placeholder="Nombre de usuario" class="form-control here" type="text">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="name" class="col-4 col-form-label">Nombre</label> 
+        <div class="col-8">
+        <input id="name" formControlName="name" placeholder="Nombre" class="form-control here" type="text">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="surname" class="col-4 col-form-label">Apellido</label> 
+        <div class="col-8">
+        <input id="surname" formControlName="surname" placeholder="Apellido" class="form-control here" type="text">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="offset-4 col-8">
+        <button [disabled]="!profileForm.valid"class="btn btn-primary">Actualizar</button>
+        </div>
+    </div>
+</form>
